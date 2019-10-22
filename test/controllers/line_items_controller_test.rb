@@ -40,11 +40,23 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to line_item_url(@line_item)
   end
 
-  test 'should destroy line_item' do
-    assert_difference('LineItem.count', -1) do
+  test 'should not destroy line_item' do
+    # Invalid request
+    assert_no_difference('LineItem.count') do
       delete line_item_url(@line_item)
     end
+    assert_redirected_to store_index_url
+  end
 
-    assert_redirected_to line_items_url
+  test 'should destroy line_item' do
+    # TODO: test destroying line items
+    # # Valid request
+    # product = products(:two)
+    # cart = carts(:one)
+    # line_item = line_items(:one)
+    # assert_equal cart.id, line_item.id
+    # # assert_difference 'LineItem.count' do
+    # #   delete line_item_url(line_item)
+    # # end
   end
 end
