@@ -34,6 +34,7 @@ class LineItemsController < ApplicationController
         reset_views_count
 
         format.html { redirect_to store_index_url }
+        format.js
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
