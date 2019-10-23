@@ -60,17 +60,10 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-    if @line_item.cart_id != session[:cart_id]
-      notice = 'Cannot update a cart that doesn\'t belong to you!'
-      url = store_index_url
-    elsif @line_item.cart_id == session[:cart_id]
-      @line_item.destroy
-      notice = 'Line item was successfully destroyed.'
-      url = cart_url(session[:cart_id])
-    end
+    @line_item.destroy if @line_item.cart_id == session[:cart_id]
 
     respond_to do |format|
-      format.html { redirect_to url, notice: notice }
+      format.html { redirect_to store_index_url }
       format.json { head :no_content }
     end
   end
