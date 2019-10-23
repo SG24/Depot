@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<p id="counter"><%= pluralize(@views, 'view') if @views >= 5 %></p>
+<p id="counter"><%= pluralize(@views, 'view') unless @views == nil || @views < 5 %></p>
 <h1>Your Pragmatic Catalog</h1>
 
 <% cache @products do %>
